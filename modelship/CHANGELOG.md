@@ -10,6 +10,7 @@
 - **`log_level` moved under "show optional configuration options"**: it now
   defaults to `info` like before, just no longer forced into the always-visible
   section. `config_file`, `state_store` and `cache_dir` already lived there.
+- Bump bundled modelship to 0.6.0.
 
 ## 0.2.4
 
