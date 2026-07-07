@@ -2,7 +2,8 @@
 
 ## 0.2.5
 
-- Bump bundled modelship to 0.5.8.
+
+- Bump bundled modelship to 0.6.0.
 
 
 ## 0.2.4
