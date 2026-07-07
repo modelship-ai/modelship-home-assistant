@@ -1,10 +1,10 @@
 name: Modelship
-version: "0.2.4"
+version: "0.3.0"
 slug: modelship
 description: >-
   Run a local modelship server (OpenAI-compatible API) for Home Assistant —
   chat/LLM, embeddings, speech-to-text, text-to-speech and image generation,
-  selected via a model profile or your own models.yaml.
+  configured via your own models.yaml.
 url: https://github.com/alez007/modelship-home-assistant
 # arm64 (aarch64) is a first-class target: modelship's CPU image is multi-arch.
 # Expect to run the small model tier on low-RAM hardware (e.g. a Raspberry Pi).
@@ -18,7 +18,7 @@ init: true
 startup: services
 boot: auto
 # share: the user-accessible cache root (weights + state) lives under /share.
-# addon_config: the generated/custom models.yaml lives here (mounts at /config).
+# addon_config: your custom models.yaml lives here (mounts at /config).
 map:
   - share:rw
   - addon_config:rw
@@ -28,13 +28,11 @@ ports_description:
   8000/tcp: modelship OpenAI API — point the Modelship Conversation integration here
 options:
   log_level: info
-  profile: assistant
   config_file: ""
   state_store: "memory://"
   cache_dir: /share/modelship
 schema:
-  log_level: list(trace|debug|info|warning|error)
-  profile: list(chat|assistant|studio|everything)
+  log_level: list(trace|debug|info|warning|error)?
   config_file: str?
   state_store: str?
   cache_dir: str?

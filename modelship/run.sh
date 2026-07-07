@@ -41,33 +41,23 @@ HF_TOKEN_OPT="$(read_opt hf_token)"; [ -n "$HF_TOKEN_OPT" ] && export HF_TOKEN="
 STATE_STORE="$(read_opt state_store)"
 [ -n "$STATE_STORE" ] && export MSHIP_STATE_STORE="$STATE_STORE"
 
-# --- Config: profile vs custom models.yaml ------------------------------------
-# Configs live in the user-visible addon_config mount (/config): generated profile
-# YAMLs and a custom models.yaml are read/written there by absolute path.
-#
-# A custom config_file overrides the profile. Both modes resolve to an explicit
-# --config path so the deploy always goes through the same reconcile path below.
-# For a profile we PRE-GENERATE the models.yaml ourselves (instead of letting
-# MSHIP_MODEL_STACK generate it lazily): passing --config + --reconcile with a
-# bare MSHIP_MODEL_STACK would hit mship_deploy's "self-heal" branch (reconcile +
-# no --config) and ignore the profile, deploying nothing on first boot.
+# --- Config: custom models.yaml ------------------------------------------------
+# Configs live in the user-visible addon_config mount (/config): a custom
+# models.yaml is read from there by absolute or relative path.
 CONFIG_FILE="$(read_opt config_file)"
-if [ -n "$CONFIG_FILE" ]; then
-    case "$CONFIG_FILE" in
-        /*) CONFIG_PATH="$CONFIG_FILE" ;;          # absolute
-        *)  CONFIG_PATH="/config/$CONFIG_FILE" ;;  # relative to addon_config
-    esac
-    echo "[run] using custom config: $CONFIG_PATH"
-else
-    PROFILE="$(read_opt profile)"; PROFILE="${PROFILE:-assistant}"
-    CONFIG_PATH="/config/models_stack_${PROFILE}.yaml"
-    echo "[run] generating profile '$PROFILE' -> $CONFIG_PATH"
-    "$MSHIP_PY" -c "from modelship.deploy.profiles.generator import generate_models_yaml as g; g('${PROFILE}', '${CONFIG_PATH}')"
+if [ -z "$CONFIG_FILE" ]; then
+    echo "[run] config_file is required: set it to a models.yaml in the add-on config folder" >&2
+    exit 1
 fi
+case "$CONFIG_FILE" in
+    /*) CONFIG_PATH="$CONFIG_FILE" ;;          # absolute
+    *)  CONFIG_PATH="/config/$CONFIG_FILE" ;;  # relative to addon_config
+esac
+echo "[run] using custom config: $CONFIG_PATH"
 
 # Reconcile every deploy so the running cluster matches the config exactly: editing
-# models.yaml or switching profile removes/replaces dropped deployments instead of
-# leaving stale ones behind (additive, the default, would only ever add).
+# models.yaml removes/replaces dropped deployments instead of leaving stale ones
+# behind (additive, the default, would only ever add).
 echo "[run] starting modelship (cache=${CACHE_DIR}, log=${MSHIP_LOG_LEVEL}, state=${MSHIP_STATE_STORE:-memory://})"
 
 cd /modelship

@@ -2,8 +2,8 @@
 
 Run a fully local [modelship](https://github.com/alez007/modelship) server in Home
 Assistant. The add-on exposes modelship's OpenAI-compatible API on port `8000`,
-serving whatever models you select via a profile or your own `models.yaml` —
-chat/LLM, embeddings, speech-to-text, text-to-speech and image generation.
+serving whatever models you list in your own `models.yaml` — chat/LLM, embeddings,
+speech-to-text, text-to-speech and image generation.
 
 For a voice assistant (conversation + STT + TTS), pair it with the
 [**Modelship Conversation**](https://github.com/alez007/modelship-conversation)
@@ -31,8 +31,8 @@ Conversation integration exposes native HA conversation/STT/TTS entities backed 
 
 ## Supported architectures
 
-`amd64` and `aarch64` (Raspberry Pi 4/5 and similar). On low-RAM boards the
-profiles automatically select the small model tier.
+`amd64` and `aarch64` (Raspberry Pi 4/5 and similar). On low-RAM boards, pick
+smaller models in your `models.yaml`.
 
 ## Repository layout
 

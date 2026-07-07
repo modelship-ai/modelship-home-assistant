@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0
+
+- **Removed profile support**: the `profile` option is gone, along with the
+  auto-generated `models_stack_<profile>.yaml`. Future modelship versions drop
+  profile generation, so this feature would stop working regardless — set
+  `config_file` to your own `models.yaml` instead (now the only way to configure
+  models, and required). The add-on refuses to start without it.
+- **`log_level` moved under "show optional configuration options"**: it now
+  defaults to `info` like before, just no longer forced into the always-visible
+  section. `config_file`, `state_store` and `cache_dir` already lived there.
+
 ## 0.2.4
 
 - **`memory://` is now the default `state_store`**: with the reconcile-on-every-start

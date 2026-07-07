@@ -11,36 +11,27 @@ HACS integration, which talks to this API over HTTP — no Wyoming needed.
 
 ## How it works
 
-The add-on runs a single modelship server. You pick **what** it serves in one of
-two ways:
-
-- a **profile** — modelship auto-generates a `models.yaml` sized to your hardware, or
-- a **custom config** — your own `models.yaml`.
+The add-on runs a single modelship server, serving whatever models you list in
+your own `models.yaml` (set via `config_file`).
 
 ## Configuration
 
 | Option | Default | Description |
 |---|---|---|
+| `config_file` | _(unset, required)_ | Your `models.yaml`. Relative names resolve under the add-on config folder (e.g. `models.yaml`); absolute paths are used as-is. |
 | `log_level` | `info` | `trace`/`debug` log full detail; `info` is normal. |
-| `profile` | `assistant` | Model set to auto-generate: `chat` (LLM + embeddings), `assistant` (LLM + STT + TTS), `studio` (LLM + image + embeddings), `everything`. Ignored if `config_file` is set. |
-| `config_file` | _(unset)_ | Use your own `models.yaml` instead of a profile. Relative names resolve under the add-on config folder (e.g. `models.yaml`); absolute paths are used as-is. Takes precedence over `profile`. |
-
-The add-on **reconciles** on every start: the running models are made to match your
-profile/`models.yaml` exactly, so editing the config or switching profile removes or
-replaces the old deployments instead of leaving stale ones running.
 | `state_store` | `memory://` | Where modelship keeps its deployment state. `memory://` (default) keeps none — the reconcile on every start rebuilds the cluster from your config. Use `file://` to persist under the cache dir (`<cache_dir>/state`), `file:///some/path`, or `redis://[:password@]host:6379/0`. |
 | `cache_dir` | `/share/modelship` | Durable root for model weights and the Hugging Face cache (and state, if you set `state_store` to `file://`). Lives under `/share` so it's reachable from the Samba/File-editor add-ons and can be cleared. |
 | `hf_token` | _(unset)_ | Hugging Face token, only needed for gated models. |
 
-The `assistant` profile is the right default for the Modelship Conversation
-integration (it serves an LLM + speech-to-text + text-to-speech).
+The add-on **reconciles** on every start: the running models are made to match your
+`models.yaml` exactly, so editing the config removes or replaces the old
+deployments instead of leaving stale ones running.
 
 ### Files you can see and edit
 
-- **Configs** live in this add-on's config folder (the `addon_config` mount). The
-  selected profile is written there as `models_stack_<profile>.yaml` on each start —
-  copy it to `models.yaml`, edit it, and set `config_file: models.yaml` to take full
-  control.
+- **Configs** live in this add-on's config folder (the `addon_config` mount). Put
+  your `models.yaml` there and set `config_file: models.yaml`.
 - **Weights / cache** live under `cache_dir` (default `/share/modelship`),
   accessible via the Samba share or File editor add-ons. Delete the folder to reclaim
   disk; it re-downloads on next start.
@@ -59,8 +50,7 @@ integration (it serves an LLM + speech-to-text + text-to-speech).
 
 - **Slow first start**: the first boot downloads models into `cache_dir`. Watch the
   log; subsequent starts reuse the cache.
-- **No models served / startup error**: check the modelship log for the profile that
-  couldn't fit your hardware, or a `models.yaml` error. Try a lighter `profile` or a
-  custom `config_file`.
-- **Out-of-memory / killed**: run on hardware with more memory, or pick a lighter
-  profile / smaller models.
+- **No models served / startup error**: check the modelship log for a `models.yaml`
+  error.
+- **Out-of-memory / killed**: run on hardware with more memory, or pick smaller
+  models in `models.yaml`.
