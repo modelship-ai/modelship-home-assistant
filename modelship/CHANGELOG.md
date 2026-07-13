@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Bump bundled modelship to 0.6.1.
+
+
 ## 0.3.0
 
 - **Removed profile support**: the `profile` option is gone, along with the
