@@ -23,7 +23,7 @@ if [ "$current" = "$MSHIP_VERSION" ]; then
 fi
 
 # 1. Repoint both arch build_from lines at the new -cpu image.
-sed -i -E "s#(ghcr\.io/alez007/modelship:)[0-9.]+(-cpu)#\1${MSHIP_VERSION}\2#g" "$BUILD"
+sed -i -E "s#(ghcr\.io/modelship-ai/modelship:)[0-9.]+(-cpu)#\1${MSHIP_VERSION}\2#g" "$BUILD"
 
 # 2. Bump the add-on's own version (patch).
 old_addon="$(sed -nE 's/^version:[[:space:]]*"?([0-9]+\.[0-9]+\.[0-9]+)"?.*/\1/p' "$CONFIG")"

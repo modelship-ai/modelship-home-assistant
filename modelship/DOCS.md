@@ -1,12 +1,12 @@
 # Modelship
 
-Run a local [modelship](https://github.com/alez007/modelship) server on your Home
+Run a local [modelship](https://github.com/modelship-ai/modelship) server on your Home
 Assistant box. It exposes an OpenAI-compatible API on port `8000` serving the
 models you select (chat/LLM, embeddings, speech-to-text, text-to-speech, image
 generation).
 
 For Assist (conversation + STT + TTS), pair this add-on with the
-[**Modelship Conversation**](https://github.com/alez007/modelship-conversation)
+[**Modelship Conversation**](https://github.com/modelship-ai/modelship-conversation)
 HACS integration, which talks to this API over HTTP — no Wyoming needed.
 
 ## How it works
@@ -39,7 +39,7 @@ deployments instead of leaving stale ones running.
 ## Wiring Home Assistant Assist
 
 1. Install the **Modelship Conversation** integration from HACS (custom repository
-   `https://github.com/alez007/modelship-conversation`).
+   `https://github.com/modelship-ai/modelship-conversation`).
 2. Add it (**Settings → Devices & Services → Add Integration → Modelship**), set the
    base URL to `http://<add-on-host>:8000/v1` and any non-empty API key (modelship
    doesn't check it).

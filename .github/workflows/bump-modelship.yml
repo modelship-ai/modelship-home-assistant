@@ -30,7 +30,7 @@ jobs:
         run: |
           target="${{ github.event.inputs.version }}"
           if [ -z "$target" ]; then
-            target="$(gh release view --repo alez007/modelship --json tagName --jq .tagName)"
+            target="$(gh release view --repo modelship-ai/modelship --json tagName --jq .tagName)"
           fi
           target="${target#v}"
           current="$(sed -nE 's#.*modelship:([0-9.]+)-cpu.*#\1#p' modelship/build.yaml | head -1)"
@@ -48,7 +48,7 @@ jobs:
         if: steps.ver.outputs.changed == 'true'
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
-          docker manifest inspect ghcr.io/alez007/modelship:${{ steps.ver.outputs.target }}-cpu > /dev/null
+          docker manifest inspect ghcr.io/modelship-ai/modelship:${{ steps.ver.outputs.target }}-cpu > /dev/null
 
       - name: Apply bump
         if: steps.ver.outputs.changed == 'true'

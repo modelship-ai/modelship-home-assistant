@@ -1,12 +1,12 @@
 # Modelship — Home Assistant add-on
 
-Run a fully local [modelship](https://github.com/alez007/modelship) server in Home
+Run a fully local [modelship](https://github.com/modelship-ai/modelship) server in Home
 Assistant. The add-on exposes modelship's OpenAI-compatible API on port `8000`,
 serving whatever models you list in your own `models.yaml` — chat/LLM, embeddings,
 speech-to-text, text-to-speech and image generation.
 
 For a voice assistant (conversation + STT + TTS), pair it with the
-[**Modelship Conversation**](https://github.com/alez007/modelship-conversation)
+[**Modelship Conversation**](https://github.com/modelship-ai/modelship-conversation)
 HACS integration, which drives this API directly over HTTP — no cloud, no Wyoming.
 
 ## What's inside
@@ -23,7 +23,7 @@ Conversation integration exposes native HA conversation/STT/TTS entities backed 
 ## Install
 
 1. In Home Assistant: **Settings → Add-ons → Add-on store → ⋮ → Repositories**,
-   add `https://github.com/alez007/modelship-home-assistant`.
+   add `https://github.com/modelship-ai/modelship-home-assistant`.
 2. Install **Modelship**, then start it. First boot downloads models, so give it a
    few minutes (watch the add-on log).
 3. See the add-on's **Documentation** tab for options and wiring Assist

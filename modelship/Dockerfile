@@ -1,7 +1,7 @@
 # Home Assistant add-on image: a vanilla modelship server.
 #
 # BUILD_FROM is supplied per-arch by build.yaml and points at a pinned, multi-arch
-# modelship CPU image (ghcr.io/alez007/modelship:<ver>-cpu, built for amd64 + arm64).
+# modelship CPU image (ghcr.io/modelship-ai/modelship:<ver>-cpu, built for amd64 + arm64).
 # We only layer a thin launcher that maps add-on options → modelship env vars.
 ARG BUILD_FROM
 FROM ${BUILD_FROM}

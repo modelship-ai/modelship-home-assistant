@@ -1,11 +1,11 @@
 name: Modelship
-version: "0.3.7"
+version: "0.3.8"
 slug: modelship
 description: >-
   Run a local modelship server (OpenAI-compatible API) for Home Assistant —
   chat/LLM, embeddings, speech-to-text, text-to-speech and image generation,
   configured via your own models.yaml.
-url: https://github.com/alez007/modelship-home-assistant
+url: https://github.com/modelship-ai/modelship-home-assistant
 # arm64 (aarch64) is a first-class target: modelship's CPU image is multi-arch.
 # Expect to run the small model tier on low-RAM hardware (e.g. a Raspberry Pi).
 arch:

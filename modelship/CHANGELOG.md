@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.8
+
+- Bump bundled modelship to 0.7.7.
+
+
 ## 0.3.7
 
 - Bump bundled modelship to 0.7.5.
@@ -75,7 +80,7 @@
 - **Renamed the add-on to "Modelship"** (slug `modelship`). It now runs a vanilla
   modelship server instead of bundling a Wyoming bridge — STT/TTS/conversation are
   provided natively by the
-  [Modelship Conversation](https://github.com/alez007/modelship-conversation) HACS
+  [Modelship Conversation](https://github.com/modelship-ai/modelship-conversation) HACS
   integration over the OpenAI API, so the Wyoming protocol (port `10300`) is gone.
 - **Profile selection**: choose `chat`, `assistant`, `studio` or `everything` instead
   of a fixed stack.
