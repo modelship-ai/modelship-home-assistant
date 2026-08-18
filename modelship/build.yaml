@@ -3,7 +3,7 @@
 # deliberately (in lockstep with `config.yaml` version) rather than tracking
 # `:latest-cpu`, so the bundled modelship can't shift under the add-on.
 build_from:
-  amd64: ghcr.io/modelship-ai/modelship:0.7.8-cpu
-  aarch64: ghcr.io/modelship-ai/modelship:0.7.8-cpu
+  amd64: ghcr.io/modelship-ai/modelship:0.7.12-cpu
+  aarch64: ghcr.io/modelship-ai/modelship:0.7.12-cpu
 labels:
   org.opencontainers.image.source: https://github.com/modelship-ai/modelship-home-assistant
