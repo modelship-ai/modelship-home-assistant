@@ -5,9 +5,8 @@ Assistant box. It exposes an OpenAI-compatible API on port `8000` serving the
 models you select (chat/LLM, embeddings, speech-to-text, text-to-speech, image
 generation).
 
-For Assist (conversation + STT + TTS), pair this add-on with the
-[**Modelship Conversation**](https://github.com/modelship-ai/modelship-conversation)
-HACS integration, which talks to this API over HTTP — no Wyoming needed.
+Any Home Assistant integration that speaks the OpenAI API can use it (see
+[Connecting Home Assistant](#connecting-home-assistant)).
 
 ## How it works
 
@@ -54,15 +53,16 @@ The API is served at `http://<add-on-host>:8000/modelship/v1`, and
   accessible via the Samba share or File editor add-ons. Delete the folder to reclaim
   disk; it re-downloads on next start.
 
-## Wiring Home Assistant Assist
+## Connecting Home Assistant
 
-1. Install the **Modelship Conversation** integration from HACS (custom repository
-   `https://github.com/modelship-ai/modelship-conversation`).
-2. Add it (**Settings → Devices & Services → Add Integration → Modelship**), set the
-   base URL to `http://<add-on-host>:8000/modelship/v1` and any non-empty API key
-   (modelship doesn't check it).
-3. It provides conversation, STT and TTS entities natively. Build your pipeline under
-   **Settings → Voice assistants → Add assistant** using those entities.
+Point an OpenAI-compatible integration at the add-on:
+
+- **Base URL:** `http://<add-on-host>:8000/modelship/v1`
+- **API key:** any non-empty value (modelship doesn't check it)
+- **Model:** the `name` of a model in your `models.yaml`
+
+The chat, embeddings, speech-to-text, text-to-speech and image endpoints are all
+under that base URL.
 
 ## Troubleshooting
 

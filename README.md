@@ -5,20 +5,16 @@ Assistant. The add-on exposes modelship's OpenAI-compatible API on port `8000`,
 serving whatever models you list in your own `models.yaml` — chat/LLM, embeddings,
 speech-to-text, text-to-speech and image generation.
 
-For a voice assistant (conversation + STT + TTS), pair it with the
-[**Modelship Conversation**](https://github.com/modelship-ai/modelship-conversation)
-HACS integration, which drives this API directly over HTTP — no cloud, no Wyoming.
+Any Home Assistant integration that speaks the OpenAI API can use it: point it at
+`http://<add-on-host>:8000/modelship/v1` with any non-empty API key.
 
 ## What's inside
 
-| Capability | How HA connects | modelship endpoint |
-|---|---|---|
-| Conversation LLM | Modelship Conversation integration (port `8000`) | `/modelship/v1/chat/completions`, `/modelship/v1/responses` |
-| Speech-to-text | Modelship Conversation integration (port `8000`) | `/modelship/v1/audio/transcriptions` |
-| Text-to-speech | Modelship Conversation integration (port `8000`) | `/modelship/v1/audio/speech` |
-
-Everything goes over modelship's OpenAI-compatible HTTP API; the Modelship
-Conversation integration exposes native HA conversation/STT/TTS entities backed by it.
+| Capability | modelship endpoint |
+|---|---|
+| Conversation LLM | `/modelship/v1/chat/completions`, `/modelship/v1/responses` |
+| Speech-to-text | `/modelship/v1/audio/transcriptions` |
+| Text-to-speech | `/modelship/v1/audio/speech` |
 
 ## Install
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.15
+
+- Docs: the Modelship Conversation integration is retired; connect any OpenAI-compatible integration to `http://<add-on-host>:8000/modelship/v1`.
+
 ## 0.3.14
 
 - Launch with `mship start`: modelship 0.8+ no longer ships `mship_deploy.py` or `/.venv`, so 0.3.13 did not start.

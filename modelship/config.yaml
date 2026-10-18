@@ -1,5 +1,5 @@
 name: Modelship
-version: "0.3.14"
+version: "0.3.15"
 slug: modelship
 description: >-
   Run a local modelship server (OpenAI-compatible API) for Home Assistant —
@@ -13,7 +13,7 @@ arch:
   - aarch64
 # Ray spawns a deep process tree; let Docker's init (tini) reap zombies for us.
 init: true
-# Other services (e.g. the conversation integration) depend on this, so bring it
+# Other services (e.g. HA integrations calling the API) depend on this, so bring it
 # up in the services phase.
 startup: services
 boot: auto
@@ -25,7 +25,7 @@ map:
 ports:
   8000/tcp: 8000
 ports_description:
-  8000/tcp: modelship OpenAI API (/modelship/v1) — point the Modelship Conversation integration here
+  8000/tcp: modelship OpenAI API (/modelship/v1)
 # The gateway answers as soon as it is up, before any model has loaded.
 watchdog: http://[HOST]:[PORT:8000]/modelship/health
 options:

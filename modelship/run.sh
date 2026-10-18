@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Single-process launcher for the add-on: translate Home Assistant add-on options
 # into modelship env vars and exec `mship start`. The OpenAI-compatible API is
-# served on :8000 under /modelship/v1; STT/TTS/conversation are consumed by the
-# Modelship Conversation HACS integration over that HTTP API (no Wyoming).
+# served on :8000 under /modelship/v1.
 set -euo pipefail
 
 # Read one key from the add-on options JSON; empty string if unset/missing.
