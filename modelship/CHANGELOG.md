@@ -2,7 +2,7 @@
 
 ## 0.3.15
 
-- Docs: the Modelship Conversation integration is retired; connect any OpenAI-compatible integration to `http://<add-on-host>:8000/modelship/v1`.
+- Docs: connect any OpenAI-compatible integration to `http://<add-on-host>:8000/modelship/v1`.
 
 ## 0.3.14
 
@@ -116,10 +116,8 @@
 ## 0.2.0
 
 - **Renamed the add-on to "Modelship"** (slug `modelship`). It now runs a vanilla
-  modelship server instead of bundling a Wyoming bridge — STT/TTS/conversation are
-  provided natively by the
-  [Modelship Conversation](https://github.com/modelship-ai/modelship-conversation) HACS
-  integration over the OpenAI API, so the Wyoming protocol (port `10300`) is gone.
+  modelship server instead of bundling a Wyoming bridge, so the Wyoming protocol
+  (port `10300`) is gone; clients use the OpenAI API.
 - **Profile selection**: choose `chat`, `assistant`, `studio` or `everything` instead
   of a fixed stack.
 - **Custom config**: point the server at your own `models.yaml` via `config_file`
