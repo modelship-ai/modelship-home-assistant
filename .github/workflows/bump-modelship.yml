@@ -2,7 +2,7 @@ name: Bump bundled modelship
 
 # Watches the modelship repo for a new release and opens a PR that repoints this
 # add-on at the new CPU image (build.yaml), bumps the add-on version (config.yaml),
-# and updates the changelog. Runs daily and on demand.
+# and updates the changelog, then merges it. Runs daily and on demand.
 on:
   schedule:
     - cron: "0 6 * * *"
@@ -55,6 +55,7 @@ jobs:
         run: ./bump.sh ${{ steps.ver.outputs.target }}
 
       - name: Open pull request
+        id: pr
         if: steps.ver.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
@@ -69,3 +70,9 @@ jobs:
             - prepends a changelog entry
 
             Verified the `${{ steps.ver.outputs.target }}-cpu` image manifest exists before opening.
+
+      - name: Merge pull request
+        if: steps.pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge "${{ steps.pr.outputs.pull-request-number }}" --merge --delete-branch
