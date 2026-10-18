@@ -13,9 +13,9 @@ HACS integration, which drives this API directly over HTTP — no cloud, no Wyom
 
 | Capability | How HA connects | modelship endpoint |
 |---|---|---|
-| Conversation LLM | Modelship Conversation integration (port `8000`) | `/v1/chat/completions`, `/v1/responses` |
-| Speech-to-text | Modelship Conversation integration (port `8000`) | `/v1/audio/transcriptions` |
-| Text-to-speech | Modelship Conversation integration (port `8000`) | `/v1/audio/speech` |
+| Conversation LLM | Modelship Conversation integration (port `8000`) | `/modelship/v1/chat/completions`, `/modelship/v1/responses` |
+| Speech-to-text | Modelship Conversation integration (port `8000`) | `/modelship/v1/audio/transcriptions` |
+| Text-to-speech | Modelship Conversation integration (port `8000`) | `/modelship/v1/audio/speech` |
 
 Everything goes over modelship's OpenAI-compatible HTTP API; the Modelship
 Conversation integration exposes native HA conversation/STT/TTS entities backed by it.

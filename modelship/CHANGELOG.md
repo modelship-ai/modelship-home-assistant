@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.14
+
+- Launch with `mship start`: modelship 0.8+ no longer ships `mship_deploy.py` or `/.venv`, so 0.3.13 did not start.
+- API base URL is `http://<add-on-host>:8000/modelship/v1` (modelship 0.7.13+ mounts the gateway under its name).
+- Move an existing `hf/` cache to `huggingface/` under `cache_dir`.
+- `state_store` takes `memory://` or `redis://` only (modelship removed `file://` in 0.7.0); new `redis_password` option, since modelship rejects a password in the URI.
+- Home Assistant watches `/modelship/health` and restarts the add-on if the gateway stops answering.
+- Docs: model choice for the CPU image and the API base URL.
+
 ## 0.3.13
 
 - Bump bundled modelship to 0.9.0.

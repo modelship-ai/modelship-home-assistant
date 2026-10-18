@@ -1,5 +1,5 @@
 name: Modelship
-version: "0.3.13"
+version: "0.3.14"
 slug: modelship
 description: >-
   Run a local modelship server (OpenAI-compatible API) for Home Assistant —
@@ -17,7 +17,7 @@ init: true
 # up in the services phase.
 startup: services
 boot: auto
-# share: the user-accessible cache root (weights + state) lives under /share.
+# share: the user-accessible cache root (model weights) lives under /share.
 # addon_config: your custom models.yaml lives here (mounts at /config).
 map:
   - share:rw
@@ -25,7 +25,9 @@ map:
 ports:
   8000/tcp: 8000
 ports_description:
-  8000/tcp: modelship OpenAI API — point the Modelship Conversation integration here
+  8000/tcp: modelship OpenAI API (/modelship/v1) — point the Modelship Conversation integration here
+# The gateway answers as soon as it is up, before any model has loaded.
+watchdog: http://[HOST]:[PORT:8000]/modelship/health
 options:
   log_level: info
   config_file: ""
@@ -37,3 +39,4 @@ schema:
   state_store: str?
   cache_dir: str?
   hf_token: password?
+  redis_password: password?
