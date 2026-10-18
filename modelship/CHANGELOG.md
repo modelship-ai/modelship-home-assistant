@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.16
+
+- Docs: remove the last mentions of the retired Modelship Conversation integration from the changelog.
+
 ## 0.3.15
 
 - Docs: connect any OpenAI-compatible integration to `http://<add-on-host>:8000/modelship/v1`.
