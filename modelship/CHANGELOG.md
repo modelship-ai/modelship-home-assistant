@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.17
+
+- Bump bundled modelship to 0.9.1.
+
+
 ## 0.3.16
 
 - Docs: remove the last mentions of the retired Modelship Conversation integration from the changelog.
