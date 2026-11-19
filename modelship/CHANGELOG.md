@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.19
+
+- Bump bundled modelship to 0.11.0.
+
+
 ## 0.3.18
 
 - Bump bundled modelship to 0.10.0.
